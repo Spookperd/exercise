@@ -41,10 +41,10 @@ export default function Home() {
       <div className="home-header">
         <div style={{ paddingTop: 'env(safe-area-inset-top)' }} />
         <div className="home-title">
-          Essentials<span>.</span>
+          Poosh<span>.</span>
         </div>
         <div style={{ color: 'var(--text2)', fontSize: 14, marginTop: 4 }}>
-          Jeff Nippard's Essentials Program
+          12-week hypertrophy program
         </div>
       </div>
 

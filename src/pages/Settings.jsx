@@ -127,11 +127,11 @@ export default function Settings() {
         <div className="settings-section">
           <div className="settings-row" style={{ borderRadius: 'var(--radius) var(--radius) 0 0' }}>
             <span className="settings-row-label">App</span>
-            <span className="settings-row-value">Essentials Tracker</span>
+            <span className="settings-row-value">Poosh</span>
           </div>
           <div className="settings-row">
             <span className="settings-row-label">Program</span>
-            <span className="settings-row-value">Jeff Nippard Essentials</span>
+            <span className="settings-row-value">12-Week Hypertrophy</span>
           </div>
           <div className="settings-row">
             <span className="settings-row-label">Blocks</span>

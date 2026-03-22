@@ -1,5 +1,5 @@
 // ============================================================
-// Jeff Nippard Essentials Program — Exercise & Workout Data
+// Poosh — Exercise & Workout Data
 // ============================================================
 
 export const EXERCISES = {

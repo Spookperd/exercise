@@ -261,7 +261,7 @@ const useStore = create(
       },
     }),
     {
-      name: 'essentials-tracker',
+      name: 'poosh-tracker',
     }
   )
 )

@@ -10,8 +10,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'Essentials Tracker',
-        short_name: 'Essentials',
+        name: 'Poosh',
+        short_name: 'Poosh',
         theme_color: '#000000',
         background_color: '#000000',
         display: 'standalone',
