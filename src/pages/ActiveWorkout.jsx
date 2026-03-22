@@ -27,6 +27,7 @@ export default function ActiveWorkout() {
   const [rpe, setRpe] = useState('')
   const [warmupAcknowledged, setWarmupAcknowledged] = useState({}) // { exerciseId: true }
   const [showNotes, setShowNotes] = useState(false)
+  const [showCue, setShowCue] = useState(false)
   const [showSkipConfirm, setShowSkipConfirm] = useState(false)
 
   // Redirect if no session
@@ -303,6 +304,15 @@ export default function ActiveWorkout() {
             )}
           </div>
         </div>
+
+        {/* Inline cue */}
+        <button className="cue-toggle" onClick={() => setShowCue((v) => !v)}>
+          <span>Cues</span>
+          <span className={`cue-chevron${showCue ? ' open' : ''}`}>⌄</span>
+        </button>
+        {showCue && (
+          <div className="cue-body">{ex.notes}</div>
+        )}
 
         {/* Set info bar */}
         <div className="set-info-bar">

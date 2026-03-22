@@ -1174,6 +1174,44 @@ body {
   outline-offset: -2px;
 }
 
+/* ===== Inline Cue ===== */
+.cue-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--surface);
+  border: none;
+  border-radius: var(--radius);
+  color: var(--text2);
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.cue-chevron {
+  font-size: 20px;
+  line-height: 1;
+  transition: transform 0.2s;
+  display: inline-block;
+}
+
+.cue-chevron.open {
+  transform: rotate(180deg);
+}
+
+.cue-body {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
 /* ===== Set Info ===== */
 .set-info-bar {
   display: flex;
