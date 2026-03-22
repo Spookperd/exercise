@@ -31,7 +31,9 @@ function formatDuration(ms) {
 export default function History() {
   const navigate = useNavigate()
   const history = useStore((s) => s.history)
+  const deleteSession = useStore((s) => s.deleteSession)
   const [expandedIds, setExpandedIds] = useState(new Set())
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null)
 
   const toggleExpand = (id) => {
     setExpandedIds((prev) => {
@@ -91,7 +93,7 @@ export default function History() {
                     className="history-session-header"
                     onClick={() => toggleExpand(session.id)}
                   >
-                    <div>
+                    <div style={{ flex: 1 }}>
                       <div className="history-session-title">
                         {workout?.name || 'Workout'} — Block {workout?.block || '?'}
                       </div>
@@ -101,9 +103,35 @@ export default function History() {
                         {` • ${totalSets} sets`}
                       </div>
                     </div>
-                    <span style={{ color: 'var(--text3)', fontSize: 18 }}>
-                      {isExpanded ? '▲' : '▼'}
-                    </span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                      {confirmDeleteId === session.id ? (
+                        <>
+                          <button
+                            className="btn btn-sm btn-danger"
+                            onClick={(e) => { e.stopPropagation(); deleteSession(session.id) }}
+                          >
+                            Delete
+                          </button>
+                          <button
+                            className="btn btn-sm btn-secondary"
+                            onClick={(e) => { e.stopPropagation(); setConfirmDeleteId(null) }}
+                          >
+                            Cancel
+                          </button>
+                        </>
+                      ) : (
+                        <button
+                          className="btn-icon"
+                          onClick={(e) => { e.stopPropagation(); setConfirmDeleteId(session.id) }}
+                          title="Delete workout"
+                        >
+                          🗑
+                        </button>
+                      )}
+                      <span style={{ color: 'var(--text3)', fontSize: 18 }}>
+                        {isExpanded ? '▲' : '▼'}
+                      </span>
+                    </div>
                   </div>
 
                   {isExpanded && (

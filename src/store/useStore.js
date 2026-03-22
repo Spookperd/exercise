@@ -187,7 +187,7 @@ const useStore = create(
         const { session } = get()
         if (!session) return
 
-        const { queue, parkedExercises, substitutions } = session
+        const { queue, parkedExercises } = session
         const ex = EXERCISES[exerciseId]
         if (!ex) return
 
@@ -250,6 +250,10 @@ const useStore = create(
           history: [completedSession, ...history],
           workoutRotation: newRotation,
         })
+      },
+
+      deleteSession: (id) => {
+        set((state) => ({ history: state.history.filter((s) => s.id !== id) }))
       },
 
       clearHistory: () => {
