@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useStore from '../store/useStore.js'
 import { getWorkoutForWeek, EXERCISES } from '../data/workouts.js'
@@ -23,6 +23,11 @@ export default function Home() {
   const workoutRotation = useStore((s) => s.workoutRotation)
   const session = useStore((s) => s.session)
   const setCurrentWeek = useStore((s) => s.setCurrentWeek)
+
+  // Auto-resume if a workout is already in progress
+  useEffect(() => {
+    if (session) navigate('/workout')
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const workout = getWorkoutForWeek(currentWeek, workoutRotation)
   const block = getBlockForWeek(currentWeek)
