@@ -1037,6 +1037,50 @@ body {
   margin-top: auto;
 }
 
+/* ===== Workout Selector ===== */
+.workout-selector {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0 4px;
+}
+
+.workout-selector-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 8px;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--surface3);
+  background: var(--surface);
+  color: var(--text2);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.workout-selector-btn.selected {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  color: var(--text);
+}
+
+.workout-selector-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.workout-selector-suggested {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 /* ===== Overview Page ===== */
 .overview-exercise-row {
   background-color: var(--surface);

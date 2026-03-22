@@ -1,7 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useStore from '../store/useStore.js'
-import { getWorkoutForWeek, EXERCISES } from '../data/workouts.js'
+import { getWorkoutForWeek, EXERCISES, WORKOUTS } from '../data/workouts.js'
+
+function getBlockForWeek(week) {
+  if (week <= 4) return 1
+  if (week <= 8) return 2
+  return 3
+}
 
 export default function WorkoutOverview() {
   const navigate = useNavigate()
@@ -10,8 +16,13 @@ export default function WorkoutOverview() {
   const session = useStore((s) => s.session)
   const startWorkout = useStore((s) => s.startWorkout)
 
-  const workout = getWorkoutForWeek(currentWeek, workoutRotation)
+  const suggestedWorkout = getWorkoutForWeek(currentWeek, workoutRotation)
+  const [selectedId, setSelectedId] = useState(suggestedWorkout?.id)
   const [expandedIds, setExpandedIds] = useState(new Set())
+
+  const block = getBlockForWeek(currentWeek)
+  const blockWorkouts = WORKOUTS.filter((w) => w.block === block)
+  const workout = WORKOUTS.find((w) => w.id === selectedId) || suggestedWorkout
 
   const toggleExpand = (id) => {
     setExpandedIds((prev) => {
@@ -23,9 +34,7 @@ export default function WorkoutOverview() {
   }
 
   const handleBegin = () => {
-    if (!session) {
-      startWorkout(workout.id)
-    }
+    if (!session) startWorkout(workout.id)
     navigate('/workout')
   }
 
@@ -64,6 +73,27 @@ export default function WorkoutOverview() {
       </div>
 
       <div className="page-content">
+        {/* Workout selector */}
+        <div className="workout-selector">
+          {blockWorkouts.map((w) => {
+            const isSuggested = w.id === suggestedWorkout?.id
+            const isSelected = w.id === selectedId
+            return (
+              <button
+                key={w.id}
+                className={`workout-selector-btn${isSelected ? ' selected' : ''}`}
+                onClick={() => { setSelectedId(w.id); setExpandedIds(new Set()) }}
+                disabled={!!session && w.id !== session.workoutId}
+              >
+                {w.name}
+                {isSuggested && (
+                  <span className="workout-selector-suggested">suggested</span>
+                )}
+              </button>
+            )
+          })}
+        </div>
+
         <div className="section-title" style={{ marginTop: 8 }}>
           Weeks {workout?.weeks} • {exercises.length} Exercises
         </div>
