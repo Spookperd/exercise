@@ -66,6 +66,7 @@ body {
   flex: 1;
   padding: 0 16px;
   padding-top: 16px;
+  overflow-x: hidden;
 }
 
 /* ===== Nav Bar ===== */
@@ -330,6 +331,7 @@ body {
 
 .big-input {
   flex: 1;
+  min-width: 0;
   font-size: 2rem;
   font-weight: 700;
   text-align: center;

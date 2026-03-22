@@ -43,9 +43,6 @@ export default function Home() {
         <div className="home-title">
           Poosh<span>.</span>
         </div>
-        <div style={{ color: 'var(--text2)', fontSize: 14, marginTop: 4 }}>
-          12-week hypertrophy program
-        </div>
       </div>
 
       <div className="page-content">
